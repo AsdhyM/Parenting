@@ -3,7 +3,7 @@ from init import db, ma
 class Parent(db.Model):
     __tablename__ = "parent"
 
-    id = db.Column(db.Integer, primary_key=True)
+    parent_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     dob = db.Column(db.Date, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
@@ -14,7 +14,7 @@ class Parent(db.Model):
 
 class ParentSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'dob', 'email', 'mobile', 'password', 'is_admin')
+        fields = ('parent_id', 'name', 'dob', 'email', 'mobile', 'password', 'is_admin')
 
 parent_schema = ParentSchema(exclude=['password'])
 parents_schema = ParentSchema(many=True, exclude=['password'])
