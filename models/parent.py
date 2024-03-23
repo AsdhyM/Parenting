@@ -6,7 +6,6 @@ class Parent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     dob = db.Column(db.Date, nullable=False)
-    image = db.Column(db.LargeBinary)
     email = db.Column(db.String, nullable=False, unique=True)
     mobile = db.Column(db.Integer, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
@@ -15,8 +14,7 @@ class Parent(db.Model):
 
 class ParentSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'dob', 'image', \
-                  'email', 'mobile', 'password', 'is_admin')
+        fields = ('id', 'name', 'dob', 'email', 'mobile', 'password', 'is_admin')
 
-parent_schema = ParentSchema(exclude=['password', 'image'])
-parents_schema = ParentSchema(many=True, exclude=['password', 'image'])
+parent_schema = ParentSchema(exclude=['password'])
+parents_schema = ParentSchema(many=True, exclude=['password'])

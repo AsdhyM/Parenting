@@ -20,7 +20,6 @@ def seed_tables():
         Parent(
             name="admin name",
             dob="2024-01-01",
-            image=None,
             email="admin@email.com",
             mobile="0404000000",
             password=bcrypt.generate_password_hash('123456').decode('utf-8'),
@@ -29,7 +28,6 @@ def seed_tables():
         Parent(
             name="User 1",
             dob="2024-02-02",
-            image=None,
             email="user1@email.com",
             mobile="0404111111",
             password=bcrypt.generate_password_hash('123456').decode('utf-8')
