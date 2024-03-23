@@ -1,6 +1,11 @@
+from datetime import date 
+
 from flask import Blueprint
+
 from init import db, bcrypt
 from models.parent import Parent 
+from models.school import School
+from models.child import Child 
 
 db_commands = Blueprint('db', __name__)
 
@@ -35,6 +40,46 @@ def seed_tables():
     ]
 
     db.session.add_all(parents)
+
+    school = [
+        School(
+            name="Gold Coast Primary"
+        ),
+        School(
+            name="Gold Coast College"
+        ),
+        School(
+            name="Gold Coast Chess"
+        ),
+        School(
+            name="Gold Coast Soccer"
+        ),
+        School(
+            name="Gold Coast Swimming"
+        ),
+        School(
+            name="Gold Coast Jiu-Jitsu"
+        )
+    ]
+
+    db.session.add_all(school)
+
+
+    child = [
+        Child(
+            name="Gabe Piozzi",
+            dob="2010-04-04",
+            school=school[1]
+        ),
+        Child(
+            name="Fabe Piozzi",
+            dob="2014-05-05",
+            school=school[0]
+        )
+    ]
+
+    db.session.add_all(child) 
+
     db.session.commit()
 
     print("Tables seeded")

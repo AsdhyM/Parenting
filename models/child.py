@@ -8,7 +8,7 @@ class Child(db.Model):
     name = db.Column(db.String)
     dob = db.Column(db.Date, nullable=False)
 
-    school_id = db.Column(db.Integer, db.ForeignKey('school.id'), nullable=False)
+    school_id = db.Column(db.Integer, db.ForeignKey('school.school_id'), nullable=False)
 
     school = db.relationship('School', back_populates='child')
 
