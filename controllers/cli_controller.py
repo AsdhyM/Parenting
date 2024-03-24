@@ -41,7 +41,7 @@ def seed_tables():
 
     db.session.add_all(parents)
 
-    school = [
+    schools = [
         School(
             name="Gold Coast Primary"
         ),
@@ -62,23 +62,23 @@ def seed_tables():
         )
     ]
 
-    db.session.add_all(school)
+    db.session.add_all(schools)
 
 
-    child = [
+    children = [
         Child(
             name="Gabe Piozzi",
             dob="2010-04-04",
-            school=school[1]
+            school=schools[1]
         ),
         Child(
             name="Fabe Piozzi",
             dob="2014-05-05",
-            school=school[0]
+            school=schools[0]
         )
     ]
 
-    db.session.add_all(child) 
+    db.session.add_all(children) 
 
     db.session.commit()
 

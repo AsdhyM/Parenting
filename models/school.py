@@ -3,18 +3,20 @@ from marshmallow import fields
 
 
 class School(db.Model):
-    __tablename__ = "school"
+    __tablename__ = "schools"
 
     school_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
 
-    child = db.relationship('Child', back_populates='school', cascade='all, delete')
+    children = db.relationship('Child', back_populates='school', cascade='all, delete')
     
 
 class SchoolSchema(ma.Schema):
-    child = fields.List(fields.Nested('ChildSchema', exclude=['school']))
-    class Meta:
-        fields = ('school_id', 'name', 'child')
 
-school_schema = SchoolSchema 
+    children = fields.List(fields.Nested('ChildSchema', exclude=['school']))
+    class Meta:
+        fields = ('school_id', 'name', 'children')
+        ordered = True 
+
+school_schema = SchoolSchema()
 schools_schema = SchoolSchema(many=True)
