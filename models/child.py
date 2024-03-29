@@ -4,22 +4,26 @@ from marshmallow import fields
 class Child(db.Model):
     __tablename__ = "children"
 
-    id = db.Column(db.Integer, primary_key=True)
+    # Child table properties
+    child_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     dob = db.Column(db.Date, nullable=False)
-
+    # Foregin keys
     school_id = db.Column(db.Integer, db.ForeignKey('schools.school_id'), nullable=False)
 
+    # Relationship with the school table
     school = db.relationship('School', back_populates='children')
+    parentings = db.relationship('Parenting', back_populates='child', cascade='all, delete')
 
 
 class ChildSchema(ma.Schema):
-    school = fields.Nested('SchoolSchema', only = ['name'])
+
+    schools = fields.List(fields.Nested('SchoolSchema', only = ['name']))
+    parentings = fields.List(fields.Nested('ParentingSchema', only = ['parenting']))
 
     class Meta:
-        fields = ('id', 'name', 'dob', 'school')
+        fields = ('child_id', 'name', 'dob', 'schools', 'parentings') 
         ordered = True
-
 
 child_schema = ChildSchema()
 children_schema = ChildSchema(many=True)

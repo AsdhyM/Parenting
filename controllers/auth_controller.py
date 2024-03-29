@@ -58,7 +58,7 @@ def auth_login():
     # If parent exists and password is correct
     if parent and bcrypt.check_password_hash(parent.password, body_data.get("password")):
         # Create JWT
-        token = create_access_token(identity=str(parent.id), expires_delta=timedelta(days=1))
+        token = create_access_token(identity=str(parent.parent_id), expires_delta=timedelta(days=1))
         # Return the token along with the parent information
         return {"email": parent.email, "token": token, "is_admin": parent.is_admin}
     # else

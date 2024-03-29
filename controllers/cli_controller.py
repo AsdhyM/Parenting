@@ -6,6 +6,7 @@ from init import db, bcrypt
 from models.parent import Parent 
 from models.school import School
 from models.child import Child 
+from models.parenting import Parenting 
 
 db_commands = Blueprint('db', __name__)
 
@@ -23,16 +24,16 @@ def drop_tables():
 def seed_tables():
     parents = [
         Parent(
-            name="admin name",
-            dob="2024-01-01",
+            name="Asdhy Piozzi",
+            dob="1980-12-22",
             email="admin@email.com",
             mobile="0404000000",
             password=bcrypt.generate_password_hash('123456').decode('utf-8'),
             is_admin=True
         ),
         Parent(
-            name="User 1",
-            dob="2024-02-02",
+            name="Dad Piozzi",
+            dob="1975-02-28",
             email="user1@email.com",
             mobile="0404111111",
             password=bcrypt.generate_password_hash('123456').decode('utf-8')
@@ -40,6 +41,7 @@ def seed_tables():
     ]
 
     db.session.add_all(parents)
+
 
     schools = [
         School(
@@ -75,10 +77,64 @@ def seed_tables():
             name="Fabe Piozzi",
             dob="2014-05-05",
             school=schools[0]
+        ),
+        Child(
+            name="Gabe Piozzi",
+            dob="2010-04-04",
+            school=schools[2]
+        ),
+        Child(
+            name="Gabe Piozzi",
+            dob="2010-04-04",
+            school=schools[4]
+        ),
+        Child(
+            name="Gabe Piozzi",
+            dob="2010-04-04",
+            school=schools[5]
+        ),Child(
+            name="Fabe Piozzi",
+            dob="2014-05-05",
+            school=schools[3]
+        ),
+        Child(
+            name="Fabe Piozzi",
+            dob="2014-05-05",
+            school=schools[4]
+        ),
+        Child(
+            name="Fabe Piozzi",
+            dob="2014-05-05",
+            school=schools[5]
         )
     ]
 
     db.session.add_all(children) 
+
+    parentings = [
+        Parenting(
+            parenting='Mother',
+            parent=parents[0],
+            child=children[0]
+        ),
+        Parenting(
+            parenting='Mother',
+            parent=parents[0],
+            child=children[1]
+        ),
+        Parenting(
+            parenting='Father',
+            parent=parents[1],
+            child=children[0]
+        ),
+        Parenting(
+            parenting='Father',
+            parent=parents[1],
+            child=children[1]
+        )
+    ]
+
+    db.session.add_all(parentings) 
 
     db.session.commit()
 

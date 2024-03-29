@@ -13,7 +13,7 @@ class School(db.Model):
 
 class SchoolSchema(ma.Schema):
 
-    children = fields.List(fields.Nested('ChildSchema', exclude=['school']))
+    children = fields.List(fields.Nested('ChildSchema', only = ['name']))
     class Meta:
         fields = ('school_id', 'name', 'children')
         ordered = True 

@@ -23,10 +23,13 @@ def create_app():
     from controllers.auth_controller import auth_bp
     app.register_blueprint(auth_bp)
 
+    from controllers.child_controller import children_bp
+    app.register_blueprint(children_bp)
+
     from controllers.school_controller import schools_bp
     app.register_blueprint(schools_bp)
 
-    from controllers.child_controller import children_bp
-    app.register_blueprint(children_bp) 
+    from controllers.parenting_controller import parentings_bp
+    app.register_blueprint(parentings_bp) 
 
     return app
