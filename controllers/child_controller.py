@@ -3,7 +3,8 @@ from flask import Blueprint, request
 from init import db
 
 from models.child import Child, children_schema, child_schema
-
+from models.parent import Parent, parents_schema, parent_schema
+from models.parenting import Parenting, parentings_schema, parenting_schema
 
 
 

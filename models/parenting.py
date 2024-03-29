@@ -22,7 +22,7 @@ class ParentingSchema(ma.Schema):
     children = fields.Nested('ChildSchema', only = ['name'])
 
     class Meta:
-        fields = ('parenting_id', 'parenting', 'parent', 'children')
+        fields = ('parenting_id', 'parenting', 'parent_id', 'child_id')
         ordered = True
 
 

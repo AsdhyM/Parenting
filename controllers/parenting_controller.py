@@ -1,10 +1,11 @@
-from flask import Blueprint 
+from flask import Blueprint, request
 
 from init import db
 
 
 from models.parenting import Parenting, parentings_schema, parenting_schema
-
+from models.parent import Parent, parents_schema, parent_schema
+from models.child import Child, children_schema, child_schema
 
 parentings_bp = Blueprint('parentings', __name__, url_prefix='/parentings') 
 
@@ -22,4 +23,24 @@ def get_one_parenting(parenting_id):
     # select * from parentings where id="id_number"
     stmt = db.select(Parenting).filter_by(parenting_id=parenting_id) 
     parenting = db.session.scalar(stmt) 
-    return parenting_schema.dump(parenting)  
+    if parenting:
+        return parenting_schema.dump(parenting)  
+    else:
+        return {"error": f"Parenting with id {parenting_id} not found"}, 404
+
+
+# http://localhost:8080/parentings
+@parentings_bp.route('/', methods=["POST"])
+def create_parenting():
+    body_data = request.get_json()
+    # Create new parenting model instance
+    parenting = Parenting(
+        parenting = body_data.get('parenting'),
+        parent_id = body_data.get('parent_id'),
+        child_id = body_data.get('child_id')
+    )
+    # Add to session and commit
+    db.session.add(parenting)
+    db.session.commit()
+    # Return new parenting created
+    return parenting_schema.dump(parenting), 201
