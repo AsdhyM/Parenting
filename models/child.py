@@ -1,3 +1,5 @@
+from datetime import date 
+
 from init import db, ma 
 from marshmallow import fields
 
@@ -12,8 +14,8 @@ class Child(db.Model):
     school_id = db.Column(db.Integer, db.ForeignKey('schools.school_id'), nullable=False)
 
     # Relationship with the school table
-    school = db.relationship('School', back_populates='children')
-    parentings = db.relationship('Parenting', back_populates='child', cascade='all, delete')
+    school = db.relationship('School', back_populates='children', cascade='all, delete')
+    parentings = db.relationship('Parenting', back_populates='child')
 
 
 class ChildSchema(ma.Schema):
