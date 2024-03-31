@@ -9,7 +9,7 @@ from models.parent import Parent, parents_schema, parent_schema
 from models.parenting import Parenting, parentings_schema, parenting_schema
 from models.school import School, schools_schema, school_schema
 from models.extracurricular import Activity, activities_schema, activity_schema
-#from models.comment import Comment, comments_schema, comment_schema
+from controllers.comment_controller import comments_bp
 
 
 parentings_bp = Blueprint('parentings', __name__, url_prefix='/parentings') 
