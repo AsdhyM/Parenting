@@ -13,10 +13,10 @@ class Child(db.Model):
     # Foregin keys
     school_id = db.Column(db.Integer, db.ForeignKey('schools.school_id'), nullable=False)
 
-    # Relationship with the school table
+    # Relationship with the other tables
     school = db.relationship('School', back_populates='children', cascade='all, delete')
     parentings = db.relationship('Parenting', back_populates='child')
-
+    activities = db.relationship('Activity', back_populates='child', cascade='all, delete')
 
 class ChildSchema(ma.Schema):
 

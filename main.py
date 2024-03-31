@@ -32,4 +32,7 @@ def create_app():
     from controllers.parenting_controller import parentings_bp
     app.register_blueprint(parentings_bp) 
 
+    from controllers.extracurricular_controller import activities_bp
+    app.register_blueprint(activities_bp) 
+
     return app

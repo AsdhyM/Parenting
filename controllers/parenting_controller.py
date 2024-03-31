@@ -3,10 +3,11 @@ from flask import Blueprint, request
 from init import db
 
 
-from models.parenting import Parenting, parentings_schema, parenting_schema
-from models.parent import Parent, parents_schema, parent_schema
 from models.child import Child, children_schema, child_schema
+from models.parent import Parent, parents_schema, parent_schema
+from models.parenting import Parenting, parentings_schema, parenting_schema
 from models.school import School, schools_schema, school_schema
+from models.extracurricular import Activity, activities_schema, activity_schema
 
 parentings_bp = Blueprint('parentings', __name__, url_prefix='/parentings') 
 

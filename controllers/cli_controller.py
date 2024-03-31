@@ -7,6 +7,7 @@ from models.parent import Parent
 from models.school import School
 from models.child import Child 
 from models.parenting import Parenting 
+from models.extracurricular import Activity
 
 db_commands = Blueprint('db', __name__)
 
@@ -77,35 +78,6 @@ def seed_tables():
             name="Fabe Piozzi",
             dob="2014-05-05",
             school=schools[0]
-        ),
-        Child(
-            name="Gabe Piozzi",
-            dob="2010-04-04",
-            school=schools[2]
-        ),
-        Child(
-            name="Gabe Piozzi",
-            dob="2010-04-04",
-            school=schools[4]
-        ),
-        Child(
-            name="Gabe Piozzi",
-            dob="2010-04-04",
-            school=schools[5]
-        ),Child(
-            name="Fabe Piozzi",
-            dob="2014-05-05",
-            school=schools[3]
-        ),
-        Child(
-            name="Fabe Piozzi",
-            dob="2014-05-05",
-            school=schools[4]
-        ),
-        Child(
-            name="Fabe Piozzi",
-            dob="2014-05-05",
-            school=schools[5]
         )
     ]
 
@@ -135,6 +107,67 @@ def seed_tables():
     ]
 
     db.session.add_all(parentings) 
+
+    activities = [
+        Activity(
+            name='Chess',
+            day="Wednesday",
+            time_start="15:00",
+            time_end="16:00",
+            child=children[0],
+            school=schools[2]
+        ),
+        Activity(
+            name='Soccer',
+            day=("Tuesday, Thursday"),
+            time_start="15:30",
+            time_end="17:00",
+            child=children[1],
+            school=schools[3]
+        ), 
+        Activity(
+            name='Soccer',
+            day=("Saturday"),
+            time_start="08:00",
+            time_end="10:00",
+            child=children[1],
+            school=schools[3]
+        ),
+        Activity(
+            name='Swimming',
+            day=("Monday, Friday"),
+            time_start="15:00",
+            time_end="16:00",
+            child=children[0],
+            school=schools[4]
+        ),
+        Activity(
+            name='Swimming',
+            day=("Monday, Friday"),
+            time_start="15:00",
+            time_end="16:00",
+            child=children[1],
+            school=schools[4]
+        ),
+        Activity(
+            name='Jiu-Jitsu',
+            day="Wednesday",
+            time_start="17:00",
+            time_end="19:00",
+            child=children[0],
+            school=schools[5]
+        ),
+        Activity(
+            name='Jiu-Jitsu',
+            day="Wednesday",
+            time_start="17:00",
+            time_end="19:00",
+            child=children[1],
+            school=schools[5]
+        )
+    ]
+
+    db.session.add_all(activities) 
 
     db.session.commit()
 

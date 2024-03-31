@@ -19,10 +19,10 @@ class Parenting(db.Model):
 class ParentingSchema(ma.Schema):
 
     parent = fields.Nested('ParentSchema', only = ['name'])
-    children = fields.Nested('ChildSchema', only = ['name'])
+    child = fields.Nested('ChildSchema', only = ['name'])
 
     class Meta:
-        fields = ('parenting_id', 'parenting', 'parent_id', 'child_id')
+        fields = ('parenting_id', 'parenting', 'parent', 'child')
         ordered = True
 
 

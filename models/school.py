@@ -9,7 +9,7 @@ class School(db.Model):
     name = db.Column(db.String)
 
     children = db.relationship('Child', back_populates='school', cascade='all, delete')
-    
+    activities = db.relationship('Activity', back_populates='school', cascade='all, delete')
 
 class SchoolSchema(ma.Schema):
 
