@@ -13,6 +13,7 @@ class Parent(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
 
     parentings = db.relationship('Parenting', back_populates='parent', cascade='all, delete')
+    #comments = db.relationship('Comment', back_populates='parent', cascade='all, delete')
 
 
 class ParentSchema(ma.Schema):

@@ -8,6 +8,8 @@ from models.school import School
 from models.child import Child 
 from models.parenting import Parenting 
 from models.extracurricular import Activity
+# from models.comment import Comment
+
 
 db_commands = Blueprint('db', __name__)
 
@@ -168,6 +170,18 @@ def seed_tables():
     ]
 
     db.session.add_all(activities) 
+
+    # comments = [
+    #     Comment(
+    #         message="Need to pack towel, swimmers, goggles and tongs",
+    #         parent=parents[0],
+    #         child=children[1],
+    #         activity=activities[3],
+    #         school=schools[4]
+    #     )
+    # ]
+
+    # db.session.add_all(comments)  
 
     db.session.commit()
 

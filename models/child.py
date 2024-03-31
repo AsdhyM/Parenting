@@ -17,7 +17,10 @@ class Child(db.Model):
     school = db.relationship('School', back_populates='children', cascade='all, delete')
     parentings = db.relationship('Parenting', back_populates='child')
     activities = db.relationship('Activity', back_populates='child', cascade='all, delete')
+    #comments = db.relationship('Comment', back_populates='child', cascade='all, delete')
 
+
+# Child Schema
 class ChildSchema(ma.Schema):
 
     schools = fields.List(fields.Nested('SchoolSchema', only = ['name']))

@@ -35,4 +35,7 @@ def create_app():
     from controllers.extracurricular_controller import activities_bp
     app.register_blueprint(activities_bp) 
 
+    # from controllers.comment_controller import comments_bp
+    # app.register_blueprint(comments_bp) 
+
     return app

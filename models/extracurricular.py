@@ -25,6 +25,7 @@ class Activity(db.Model):
     # Relationship with the activities table
     child = db.relationship('Child', back_populates='activities')
     school = db.relationship('School', back_populates='activities', cascade='all, delete')
+    #comment = db.relationship('Comment', back_populates='activities', cascade='all, delete')
 
 class ActivitySchema(ma.Schema):
 

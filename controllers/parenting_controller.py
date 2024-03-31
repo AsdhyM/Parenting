@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from init import db
 
@@ -8,6 +9,8 @@ from models.parent import Parent, parents_schema, parent_schema
 from models.parenting import Parenting, parentings_schema, parenting_schema
 from models.school import School, schools_schema, school_schema
 from models.extracurricular import Activity, activities_schema, activity_schema
+#from models.comment import Comment, comments_schema, comment_schema
+
 
 parentings_bp = Blueprint('parentings', __name__, url_prefix='/parentings') 
 
@@ -33,12 +36,13 @@ def get_one_parenting(parenting_id):
 
 # http://localhost:8080/parentings
 @parentings_bp.route('/', methods=["POST"])
+@jwt_required()
 def create_parenting():
     body_data = request.get_json()
     # Create new parenting model instance
     parenting = Parenting(
         parenting = body_data.get('parenting'),
-        parent_id = body_data.get('parent_id'),
+        parent_id = get_jwt_identity(),
         child_id = body_data.get('child_id')
     )
     # Add to session and commit
@@ -46,3 +50,4 @@ def create_parenting():
     db.session.commit()
     # Return new parenting created
     return parenting_schema.dump(parenting), 201
+

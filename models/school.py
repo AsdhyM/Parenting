@@ -10,6 +10,7 @@ class School(db.Model):
 
     children = db.relationship('Child', back_populates='school', cascade='all, delete')
     activities = db.relationship('Activity', back_populates='school', cascade='all, delete')
+    #comments = db.relationship('Comment', back_populates='school', cascade='all, delete')
 
 class SchoolSchema(ma.Schema):
 
